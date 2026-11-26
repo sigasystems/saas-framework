@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+echo "✨ Running staged checks..."
+
+npx lint-staged --allow-empty || exit 1
+
+npm run typecheck || {
+  echo "❌ TypeScript errors found. Fix them before committing."
+  exit 1
+}
+
+echo "✅ Pre-commit passed."
+exit 0
